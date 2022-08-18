@@ -42,7 +42,7 @@ public class Costumer {
             throw new IllegalArgumentException("Id não pode ser nulo.");
     }
 
-    public void setAddress(Address address) {
+    public void changeAddress(Address address) {
         this.address = address;
     }
 

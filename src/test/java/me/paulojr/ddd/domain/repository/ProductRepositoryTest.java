@@ -1,7 +1,6 @@
 package me.paulojr.ddd.domain.repository;
 
 import me.paulojr.ddd.domain.entity.product.Product;
-import me.paulojr.ddd.infrastructure.repository.ProductRepositoryJpa;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -69,7 +69,7 @@ public class CostumerTest {
     void shouldActivate() {
         final Costumer costumer = new Costumer("123", "Nome Completo");
         final Address address = new Address("Rua", 1, "123456-123", "Cidade");
-        costumer.setAddress(address);
+        costumer.changeAddress(address);
         costumer.activate();
         assertTrue(costumer.isActive());
     }
@@ -78,7 +78,7 @@ public class CostumerTest {
     void shouldDeactivate() {
         final Costumer costumer = new Costumer("123", "Nome Completo");
         final Address address = new Address("Rua", 1, "123456-123", "Cidade");
-        costumer.setAddress(address);
+        costumer.changeAddress(address);
         costumer.activate();
         costumer.deactivate();
         assertFalse(costumer.isActive());

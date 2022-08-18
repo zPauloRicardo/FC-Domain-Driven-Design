@@ -1,4 +1,4 @@
-package me.paulojr.ddd.infrastructure.repository;
+package me.paulojr.ddd.infrastructure.repository.jpa;
 
 
 import me.paulojr.ddd.infrastructure.database.model.ProductModel;

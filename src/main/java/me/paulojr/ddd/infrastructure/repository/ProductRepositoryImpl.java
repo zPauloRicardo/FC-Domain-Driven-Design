@@ -3,6 +3,7 @@ package me.paulojr.ddd.infrastructure.repository;
 import me.paulojr.ddd.domain.entity.product.Product;
 import me.paulojr.ddd.domain.repository.ProductRepository;
 import me.paulojr.ddd.infrastructure.database.model.ProductModel;
+import me.paulojr.ddd.infrastructure.repository.jpa.ProductRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

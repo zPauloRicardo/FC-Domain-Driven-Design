@@ -41,4 +41,26 @@ public class Address {
     public String getCity() {
         return city;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        if (street != null ? !street.equals(address.street) : address.street != null) return false;
+        if (number != null ? !number.equals(address.number) : address.number != null) return false;
+        if (zip != null ? !zip.equals(address.zip) : address.zip != null) return false;
+        return city != null ? city.equals(address.city) : address.city == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = street != null ? street.hashCode() : 0;
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (zip != null ? zip.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        return result;
+    }
 }
