@@ -1,5 +1,7 @@
 package me.paulojr.ddd.domain.entity.order;
 
+import java.util.Objects;
+
 public class OrderItem {
 
     private String id;
@@ -49,5 +51,33 @@ public class OrderItem {
 
     public Float getQuantity() {
         return quantity;
+    }
+
+    public Float getUnitPrice() {
+        return this.price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrderItem orderItem = (OrderItem) o;
+
+        if (!Objects.equals(id, orderItem.id)) return false;
+        if (!Objects.equals(name, orderItem.name)) return false;
+        if (!Objects.equals(price, orderItem.price)) return false;
+        if (!Objects.equals(productId, orderItem.productId)) return false;
+        return Objects.equals(quantity, orderItem.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (productId != null ? productId.hashCode() : 0);
+        result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
+        return result;
     }
 }

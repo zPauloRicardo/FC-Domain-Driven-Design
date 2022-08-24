@@ -62,7 +62,7 @@ public class CostumerRepositoryTest {
         List<Costumer> prods = List.of(costumerOne, costumerTwo);
 
         final List<Costumer> list = ls.stream().filter(costumer -> prods.stream().noneMatch(s -> Objects.equals(s.getId(), costumer.getId()) &&
-                Objects.equals(s.getAddress(),costumer.getAddress()) &&
+                Objects.equals(s.getAddress(), costumer.getAddress()) &&
                 s.getName().equals(costumer.getName()) &&
                 Objects.equals(s.getRewardPoints(), costumer.getRewardPoints()))).collect(Collectors.toList());
         assertEquals(0, list.size());

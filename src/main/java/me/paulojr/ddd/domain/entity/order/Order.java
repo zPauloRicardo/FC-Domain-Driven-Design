@@ -1,20 +1,19 @@
 package me.paulojr.ddd.domain.entity.order;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
 
     private String id;
     private String costumerId;
     private List<OrderItem> items;
-    private Float total;
 
     public Order(String id, String costumerId, List<OrderItem> items) {
         this.id = id;
         this.costumerId = costumerId;
         this.items = items;
         this.validate();
-        this.total = this.total();
     }
 
     private void validate() {
@@ -45,6 +44,26 @@ public class Order {
     }
 
     public Float getTotal() {
-        return total;
+        return this.total();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (!Objects.equals(id, order.id)) return false;
+        if (!Objects.equals(costumerId, order.costumerId)) return false;
+        return Objects.equals(items, order.items);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (costumerId != null ? costumerId.hashCode() : 0);
+        result = 31 * result + (items != null ? items.hashCode() : 0);
+        return result;
     }
 }

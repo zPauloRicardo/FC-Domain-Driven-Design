@@ -43,6 +43,38 @@ public class CostumerModel {
 
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setRewardPoints(Float rewardPoints) {
+        this.rewardPoints = rewardPoints;
+    }
+
     public String getId() {
         return id;
     }
