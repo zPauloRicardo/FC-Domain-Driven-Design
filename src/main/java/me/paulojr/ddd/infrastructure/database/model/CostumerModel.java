@@ -1,9 +1,7 @@
 package me.paulojr.ddd.infrastructure.database.model;
 
 
-import me.paulojr.ddd.domain.entity.costumer.Address;
 import me.paulojr.ddd.domain.entity.costumer.Costumer;
-import me.paulojr.ddd.domain.entity.product.Product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,9 +1,7 @@
 package me.paulojr.ddd.infrastructure.database.model;
 
 
-import me.paulojr.ddd.domain.entity.order.Order;
 import me.paulojr.ddd.domain.entity.order.OrderItem;
-import me.paulojr.ddd.domain.entity.product.Product;
 
 import javax.persistence.*;
 

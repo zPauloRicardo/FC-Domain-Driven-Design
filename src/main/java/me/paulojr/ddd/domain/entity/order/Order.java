@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Order {
 
-    private String id;
-    private String costumerId;
-    private List<OrderItem> items;
+    private final String id;
+    private final String costumerId;
+    private final List<OrderItem> items;
 
     public Order(String id, String costumerId, List<OrderItem> items) {
         this.id = id;

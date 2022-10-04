@@ -1,8 +1,10 @@
 package me.paulojr.ddd.domain.entity.product;
 
+import java.util.Objects;
+
 public class Product {
 
-    private String id;
+    private final String id;
     private String name;
     private Float price;
 
@@ -53,9 +55,9 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        if (id != null ? !id.equals(product.id) : product.id != null) return false;
-        if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        return price != null ? price.equals(product.price) : product.price == null;
+        if (!Objects.equals(id, product.id)) return false;
+        if (!Objects.equals(name, product.name)) return false;
+        return Objects.equals(price, product.price);
     }
 
     @Override

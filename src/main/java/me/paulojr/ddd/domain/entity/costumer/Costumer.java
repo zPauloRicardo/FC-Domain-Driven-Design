@@ -2,7 +2,7 @@ package me.paulojr.ddd.domain.entity.costumer;
 
 public class Costumer {
 
-    private String id;
+    private final String id;
     private String name;
     private Address address;
     private boolean active = false;

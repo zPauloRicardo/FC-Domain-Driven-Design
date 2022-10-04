@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class CostumerRepositoryImpl implements CostumerRepository {
 
     @Override
     public CompletableFuture<Costumer> find(String id) {
-        return CompletableFuture.supplyAsync(() -> this.fromModel(this.costumerRepositoryJpa.findById(id).orElse(null)));
+        return CompletableFuture.supplyAsync(() -> this.fromModel(Objects.requireNonNull(this.costumerRepositoryJpa.findById(id).orElse(null))));
     }
 
     @Override
@@ -44,7 +45,7 @@ public class CostumerRepositoryImpl implements CostumerRepository {
 
     private Costumer fromModel(CostumerModel entity) {
         final Address address = entity != null && entity.getStreet() != null ? new Address(entity.getStreet(), entity.getNumber(), entity.getZip(), entity.getCity()) : null;
-        final Costumer costumer = new Costumer(entity.getId(), entity.getName());
+        final Costumer costumer = new Costumer(Objects.requireNonNull(entity).getId(), entity.getName());
         costumer.changeAddress(address);
         if(entity.isActive()) costumer.activate();
         costumer.addReawardPoints(entity.getRewardPoints());

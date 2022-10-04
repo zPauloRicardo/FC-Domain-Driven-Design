@@ -1,11 +1,13 @@
 package me.paulojr.ddd.domain.entity.costumer;
 
+import java.util.Objects;
+
 public class Address {
 
-    private String street;
-    private Integer number;
-    private String zip;
-    private String city;
+    private final String street;
+    private final Integer number;
+    private final String zip;
+    private final String city;
 
     public Address(String street, Integer number, String zip, String city) {
         this.street = street;
@@ -16,14 +18,16 @@ public class Address {
     }
 
     private void validate() {
-        if(this.street == null || this.street.isBlank() || this.street.isBlank())
+        if (this.street == null || this.street.isBlank()) {
             throw new IllegalArgumentException("Rua é obrigatorio.");
-        if(this.zip == null || this.zip.isBlank() || this.zip.isBlank())
+        }
+        if (this.zip == null || this.zip.isBlank()) {
             throw new IllegalArgumentException("CEP é obrigatorio.");
-        if(this.city == null || this.city.isBlank() || this.city.isBlank())
+        }
+        if (this.city == null || this.city.isBlank()) {
             throw new IllegalArgumentException("Cidade é obrigatorio.");
-        if(this.number == null || this.number.intValue() == 0)
-            throw new IllegalArgumentException("Numero deve ser maior que 0.");
+        }
+        if (this.number == null || this.number == 0) throw new IllegalArgumentException("Numero deve ser maior que 0.");
     }
 
     public String getStreet() {
@@ -49,10 +53,10 @@ public class Address {
 
         Address address = (Address) o;
 
-        if (street != null ? !street.equals(address.street) : address.street != null) return false;
-        if (number != null ? !number.equals(address.number) : address.number != null) return false;
-        if (zip != null ? !zip.equals(address.zip) : address.zip != null) return false;
-        return city != null ? city.equals(address.city) : address.city == null;
+        if (!Objects.equals(street, address.street)) return false;
+        if (!Objects.equals(number, address.number)) return false;
+        if (!Objects.equals(zip, address.zip)) return false;
+        return Objects.equals(city, address.city);
     }
 
     @Override

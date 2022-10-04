@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class OrderItem {
 
-    private String id;
-    private String name;
-    private Float price;
-    private String productId;
-    private Float quantity;
+    private final String id;
+    private final String name;
+    private final Float price;
+    private final String productId;
+    private final Float quantity;
 
 
     public OrderItem(String id, String name, Float price, String productId, Float quantity) {

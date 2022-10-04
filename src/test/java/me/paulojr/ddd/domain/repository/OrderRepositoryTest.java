@@ -5,8 +5,6 @@ import me.paulojr.ddd.domain.entity.costumer.Costumer;
 import me.paulojr.ddd.domain.entity.order.Order;
 import me.paulojr.ddd.domain.entity.order.OrderItem;
 import me.paulojr.ddd.domain.entity.product.Product;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,8 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -30,11 +29,6 @@ public class OrderRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
-
-    @BeforeEach
-    void before(){
-
-    }
 
     @Test
     void shouldCreateNewOrder() {
@@ -113,11 +107,11 @@ public class OrderRepositoryTest {
         final List<Order> retrieved = this.orderRepository.findAll().join();
         final Order saved1 = retrieved.stream().filter(order1 -> order1.getId().equals("123")).findFirst().orElse(null);
         final Order saved2 = retrieved.stream().filter(order1 -> order1.getId().equals("321")).findFirst().orElse(null);
-        assertEquals("123", saved1.getId());
+        assertEquals("123", Objects.requireNonNull(saved1).getId());
         assertEquals("123", saved1.getCostumerId());
         assertEquals(20f, saved1.getTotal());
         assertEquals(orderItem, saved1.getItems().get(0));
-        assertEquals("321", saved2.getId());
+        assertEquals("321", Objects.requireNonNull(saved2).getId());
         assertEquals("123", saved2.getCostumerId());
         assertEquals(40f, saved2.getTotal());
         assertEquals(orderItem2, saved2.getItems().get(0));
