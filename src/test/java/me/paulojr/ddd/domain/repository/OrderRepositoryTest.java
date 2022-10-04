@@ -5,15 +5,21 @@ import me.paulojr.ddd.domain.entity.costumer.Costumer;
 import me.paulojr.ddd.domain.entity.order.Order;
 import me.paulojr.ddd.domain.entity.order.OrderItem;
 import me.paulojr.ddd.domain.entity.product.Product;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class OrderRepositoryTest {
 
     @Autowired
@@ -24,6 +30,11 @@ public class OrderRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @BeforeEach
+    void before(){
+
+    }
 
     @Test
     void shouldCreateNewOrder() {
