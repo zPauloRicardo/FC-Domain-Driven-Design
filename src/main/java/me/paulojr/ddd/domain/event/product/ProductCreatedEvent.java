@@ -6,12 +6,12 @@ import me.paulojr.ddd.domain.event.Event;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class SendEmailWhenProductCreatedEvent implements Event<Product> {
+public class ProductCreatedEvent implements Event<Product> {
 
     private final LocalDateTime dateTime;
     private final Product data;
 
-    public SendEmailWhenProductCreatedEvent(LocalDateTime dateTime, Product data) {
+    public ProductCreatedEvent(LocalDateTime dateTime, Product data) {
         this.dateTime = dateTime;
         this.data = data;
     }
@@ -30,9 +30,9 @@ public class SendEmailWhenProductCreatedEvent implements Event<Product> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SendEmailWhenProductCreatedEvent)) return false;
+        if (!(o instanceof ProductCreatedEvent)) return false;
 
-        SendEmailWhenProductCreatedEvent that = (SendEmailWhenProductCreatedEvent) o;
+        ProductCreatedEvent that = (ProductCreatedEvent) o;
 
         if (!Objects.equals(dateTime, that.dateTime)) return false;
         return Objects.equals(data, that.data);

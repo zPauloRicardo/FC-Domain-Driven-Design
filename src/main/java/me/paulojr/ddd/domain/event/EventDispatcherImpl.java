@@ -1,48 +1,45 @@
 package me.paulojr.ddd.domain.event;
 
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentMap;
+import java.util.*;
 
 public class EventDispatcherImpl implements EventDispatcher {
 
-    private final Map<String, List<EventHandler<?>>> eventHandlers = new HashMap<>();
+    private final Map<String, List<EventHandler>> eventHandlers = new HashMap<>();
 
 
     @Override
     public void notify(Event<?> event) {
-
+        this.eventHandlers.getOrDefault(event.getClass().getSimpleName().toLowerCase(), Collections.emptyList()).forEach(eventEventHandler -> eventEventHandler.handle(event));
     }
 
     @Override
-    public void register(String eventName, EventHandler<?> eventHandler) {
-        final List<EventHandler<?>> handlers = this.eventHandlers.getOrDefault(eventName, new ArrayList<>());
+    public void register(String eventName, EventHandler eventHandler) {
+        eventName = eventName.toLowerCase();
+        final List<EventHandler> handlers = this.eventHandlers.getOrDefault(eventName, new ArrayList<>());
         handlers.add(eventHandler);
         eventHandlers.put(eventName, handlers);
     }
 
     @Override
-    public void unregister(String eventName, EventHandler<?> eventHandler) {
-        eventHandlers.getOrDefault(eventName, new ArrayList<>()).remove(eventHandler);
+    public void unregister(String eventName, EventHandler eventHandler) {
+        eventName = eventName.toLowerCase();
+        eventHandlers.getOrDefault(eventName, Collections.emptyList()).remove(eventHandler);
     }
 
     @Override
     public void unregisterAll(String eventName) {
-
+        eventName = eventName.toLowerCase();
+        eventHandlers.getOrDefault(eventName, Collections.emptyList()).clear();
     }
 
     @Override
     public void unregisterAll() {
-
+        eventHandlers.clear();
     }
 
     @Override
-    public List<EventHandler<?>> getEventHandlers(String productCreatedEvent) {
-        return this.eventHandlers.getOrDefault(productCreatedEvent, new ArrayList<>());
+    public List<EventHandler> getEventHandlers(String eventName) {
+        eventName = eventName.toLowerCase();
+        return this.eventHandlers.getOrDefault(eventName, new ArrayList<>());
     }
 }

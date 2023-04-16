@@ -1,8 +1,8 @@
 package me.paulojr.ddd.domain.event;
 
-public interface EventHandler<T extends Event<?>> {
+public interface EventHandler {
 
-    void handle(T t);
+    void handle(Event<?> t);
 
 
 }

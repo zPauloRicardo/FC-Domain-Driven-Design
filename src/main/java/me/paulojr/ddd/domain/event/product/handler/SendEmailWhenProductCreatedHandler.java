@@ -1,12 +1,12 @@
 package me.paulojr.ddd.domain.event.product.handler;
 
+import me.paulojr.ddd.domain.event.Event;
 import me.paulojr.ddd.domain.event.EventHandler;
-import me.paulojr.ddd.domain.event.product.SendEmailWhenProductCreatedEvent;
 
-public class SendEmailWhenProductCreatedHandler implements EventHandler<SendEmailWhenProductCreatedEvent> {
+public class SendEmailWhenProductCreatedHandler implements EventHandler {
 
     @Override
-    public void handle(SendEmailWhenProductCreatedEvent sendEmailWhenProductCreatedEvent) {
+    public void handle(Event<?> productCreatedEvent) {
         System.out.println("SENDING EMAIL TO admin@admin.com");
     }
 }
