@@ -3,7 +3,7 @@ package me.paulojr.ddd.infrastructure.database.model;
 
 import me.paulojr.ddd.domain.entity.order.OrderItem;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "FC_ORDER_ITEMS")

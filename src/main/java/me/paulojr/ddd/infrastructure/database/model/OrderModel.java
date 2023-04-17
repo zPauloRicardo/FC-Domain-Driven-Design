@@ -3,7 +3,7 @@ package me.paulojr.ddd.infrastructure.database.model;
 
 import me.paulojr.ddd.domain.entity.order.Order;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

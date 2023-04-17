@@ -67,4 +67,14 @@ public class Address {
         result = 31 * result + (city != null ? city.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", number=" + number +
+                ", zip='" + zip + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

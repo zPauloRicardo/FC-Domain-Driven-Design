@@ -1,6 +1,13 @@
 package me.paulojr.ddd.domain.event;
 
+import me.paulojr.ddd.domain.entity.costumer.Address;
+import me.paulojr.ddd.domain.entity.costumer.Costumer;
 import me.paulojr.ddd.domain.entity.product.Product;
+import me.paulojr.ddd.domain.event.costumer.CostumerChangeAddressEvent;
+import me.paulojr.ddd.domain.event.costumer.CostumerCreatedEvent;
+import me.paulojr.ddd.domain.event.costumer.handler.SendLogOneWhenConstumerCreatedHandler;
+import me.paulojr.ddd.domain.event.costumer.handler.SendLogTwoWhenConstumerCreatedHandler;
+import me.paulojr.ddd.domain.event.costumer.handler.SendLogWhenChangeAddressHandler;
 import me.paulojr.ddd.domain.event.product.ProductCreatedEvent;
 import me.paulojr.ddd.domain.event.product.handler.SendEmailWhenProductCreatedHandler;
 import org.junit.jupiter.api.Test;
@@ -70,6 +77,26 @@ public class EventDispatcherTest {
         eventDispatcher.notify(productCreatedEvent);
         //verifica se foi executado.
         Mockito.verify(eventHandler).handle(Mockito.any());
+
+        final EventHandler eventHandlerCreateOne = Mockito.spy(new SendLogOneWhenConstumerCreatedHandler());
+        final EventHandler eventHandlerCreateTwo = Mockito.spy(new SendLogTwoWhenConstumerCreatedHandler());
+        final EventHandler eventHandlerChange = Mockito.spy(new SendLogWhenChangeAddressHandler());
+        eventDispatcher.register("costumerCreatedEvent", eventHandlerCreateOne);
+        eventDispatcher.register("costumerCreatedEvent", eventHandlerCreateTwo);
+        eventDispatcher.register("costumerChangeAddressEvent", eventHandlerChange);
+
+
+        final Costumer costumer = new Costumer("01","Costumer 1");
+        final CostumerCreatedEvent costumerCreatedEvent = new CostumerCreatedEvent(LocalDateTime.now(), costumer);
+        eventDispatcher.notify(costumerCreatedEvent);
+        Mockito.verify(eventHandlerCreateOne).handle(Mockito.any());
+        Mockito.verify(eventHandlerCreateTwo).handle(Mockito.any());
+
+
+        costumer.changeAddress(new Address("Rua teste",  10, "93800-246", "Sapiranga"));
+        final CostumerChangeAddressEvent costumerChangeAddressEvent = new CostumerChangeAddressEvent(LocalDateTime.now(), costumer);
+        eventDispatcher.notify(costumerChangeAddressEvent);
+        Mockito.verify(eventHandlerChange).handle(Mockito.any());
     }
 
 
