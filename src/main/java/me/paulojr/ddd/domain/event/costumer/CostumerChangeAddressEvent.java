@@ -30,9 +30,7 @@ public class CostumerChangeAddressEvent implements Event<Costumer> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CostumerChangeAddressEvent)) return false;
-
-        CostumerChangeAddressEvent that = (CostumerChangeAddressEvent) o;
+        if (!(o instanceof CostumerChangeAddressEvent that)) return false;
 
         if (!Objects.equals(dateTime, that.dateTime)) return false;
         return Objects.equals(data, that.data);

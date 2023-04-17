@@ -30,9 +30,7 @@ public class CostumerCreatedEvent implements Event<Costumer> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CostumerCreatedEvent)) return false;
-
-        CostumerCreatedEvent that = (CostumerCreatedEvent) o;
+        if (!(o instanceof CostumerCreatedEvent that)) return false;
 
         if (!Objects.equals(dateTime, that.dateTime)) return false;
         return Objects.equals(data, that.data);
