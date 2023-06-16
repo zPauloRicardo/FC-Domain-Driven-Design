@@ -1,5 +1,6 @@
 package me.paulojr.ddd.domain.entity.product;
 
+import me.paulojr.ddd.domain.product.entity.Product;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;

@@ -1,8 +1,9 @@
 package me.paulojr.ddd.domain.service;
 
-import me.paulojr.ddd.domain.entity.costumer.Costumer;
-import me.paulojr.ddd.domain.entity.order.Order;
-import me.paulojr.ddd.domain.entity.order.OrderItem;
+import me.paulojr.ddd.domain.checkout.service.OrderService;
+import me.paulojr.ddd.domain.customer.entity.Customer;
+import me.paulojr.ddd.domain.checkout.entity.Order;
+import me.paulojr.ddd.domain.checkout.entity.OrderItem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -40,22 +41,22 @@ public class OrderServiceTest {
 
     @Test
     void shouldPlaceAnOrder() {
-        final Costumer costumer = new Costumer("c1", "Costumer 1");
+        final Customer customer = new Customer("c1", "Customer 1");
         final OrderItem orderItem1 = new OrderItem("oi1", "Item 1", 10f, "p1", 1f);
-        final Order order = orderService.placeOrder(costumer, List.of(orderItem1));
-        assertEquals(5f, costumer.getRewardPoints());
+        final Order order = orderService.placeOrder(customer, List.of(orderItem1));
+        assertEquals(5f, customer.getRewardPoints());
         assertEquals(10f, order.getTotal());
     }
 
     @Test
     void shouldErrorPlaceAnOrderWithNullItems() {
-        final Costumer costumer = new Costumer("c1", "Costumer 1");
-        assertThrows(IllegalArgumentException.class, () -> orderService.placeOrder(costumer, null));
+        final Customer customer = new Customer("c1", "Customer 1");
+        assertThrows(IllegalArgumentException.class, () -> orderService.placeOrder(customer, null));
     }
 
     @Test
     void shouldErrorPlaceAnOrderWithNoItems() {
-        final Costumer costumer = new Costumer("c1", "Costumer 1");
-        assertThrows(IllegalArgumentException.class, () -> orderService.placeOrder(costumer, Collections.emptyList()));
+        final Customer customer = new Customer("c1", "Customer 1");
+        assertThrows(IllegalArgumentException.class, () -> orderService.placeOrder(customer, Collections.emptyList()));
     }
 }

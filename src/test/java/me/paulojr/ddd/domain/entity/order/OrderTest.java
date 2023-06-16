@@ -1,5 +1,7 @@
 package me.paulojr.ddd.domain.entity.order;
 
+import me.paulojr.ddd.domain.checkout.entity.Order;
+import me.paulojr.ddd.domain.checkout.entity.OrderItem;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -15,7 +17,7 @@ public class OrderTest {
     }
 
     @Test
-    void shouldThrowErrorWhenCostumerIsNull() {
+    void shouldThrowErrorWhencustomerIsNull() {
         assertThrows(IllegalArgumentException.class, () -> new Order("123", null, List.of(new OrderItem("1", "Produto", 10.5f, "p2", 2f))));
     }
 

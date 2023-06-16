@@ -1,6 +1,7 @@
 package me.paulojr.ddd.domain.service;
 
-import me.paulojr.ddd.domain.entity.product.Product;
+import me.paulojr.ddd.domain.product.service.ProductService;
+import me.paulojr.ddd.domain.product.entity.Product;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;

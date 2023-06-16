@@ -1,6 +1,7 @@
 package me.paulojr.ddd.domain.repository;
 
-import me.paulojr.ddd.domain.entity.product.Product;
+import me.paulojr.ddd.domain.product.entity.Product;
+import me.paulojr.ddd.domain.product.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
